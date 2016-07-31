@@ -69,5 +69,19 @@
         android:text="@string/show"
         android:id="@+id/show_button"/>
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Probar"
+        android:id="@+id/proof_button"
+        android:layout_gravity="center_horizontal" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/proof_text"
+        android:layout_gravity="center_horizontal" />
+
 
 </LinearLayout>
