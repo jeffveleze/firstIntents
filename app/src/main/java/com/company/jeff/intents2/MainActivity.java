@@ -17,7 +17,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -26,8 +26,8 @@ public class MainActivity extends AppCompatActivity {
 
     EditText nombre,contra,fecha;
     Button btn1,btn2;
-    @Bind(R.id.proof_button) Button proofButton;
-    @Bind(R.id.proof_text) TextView proofText;
+    @BindView(R.id.proof_button) Button proofButton;
+    @BindView(R.id.proof_text) TextView proofText;
 
 
     @Override
@@ -69,24 +69,34 @@ public class MainActivity extends AppCompatActivity {
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this,Main2Activity.class);
 
-                Bundle bundle = new Bundle();
-                bundle.putString("nombre",nombre.getText().toString());
-                bundle.putString("contra",contra.getText().toString());
-                bundle.putString("fecha",fecha.getText().toString());
-                intent.putExtras(bundle);
-                startActivity(intent);
+                if(!nombre.getText().toString().isEmpty() &&
+                        !contra.getText().toString().isEmpty() &&
+                        !fecha.getText().toString().isEmpty()){
+
+                    Intent intent = new Intent(MainActivity.this,Main2Activity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("nombre",nombre.getText().toString());
+                    bundle.putString("contra",contra.getText().toString());
+                    bundle.putString("fecha",fecha.getText().toString());
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                    
+                }else {
+                    Snackbar.make(view,"Información adjunta no está completa",Snackbar.LENGTH_SHORT).show();
+                }
+
             }
         });
 
     }
 
     @OnClick(R.id.proof_button)
-    public void submit(){
+    public void submit(View view){
 
         proofButton.setBackgroundColor(Color.parseColor("#01D6BB"));
         proofText.setText("Cambió con ButterKnife");
+        Snackbar.make(view,"Probando los Snackbars",Snackbar.LENGTH_SHORT).show();
 
     }
 
